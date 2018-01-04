@@ -1,3 +1,39 @@
+<form [formGroup]="articleForm">
+    <div class="form-group">
+        <label for="articletitle">标题</label>
+        <input style="width: 100%;" id="articletitle" class="form-control" formControlName="articletitle" required>
+        <div *ngIf="articletitle.invalid && (articletitle.dirty || articletitle.touched)"
+             class="alert alert-danger">
+
+            <div *ngIf="articletitle.errors.required">
+                articletitle is required.
+            </div>
+        </div>
+
+        <label for="articlecontent">正文</label>
+        <div [froalaEditor]="option" [(froalaModel)]="article.articlecontent"  id="articlecontent" class="form-control" formControlName="articlecontent" required></div>
+        <div *ngIf="articlecontent.invalid && (articlecontent.dirty || articlecontent.touched)"
+             class="alert alert-danger">
+            <div *ngIf="articlecontent.errors.required">
+                articlecontent is required.
+            </div>
+        </div>
+
+        <label for="articletags">标签</label>
+        <input style="width: 100%;" id="articletags" class="form-control" formControlName="articletags" required>
+        <div *ngIf="articletags.invalid && (articletags.dirty || articletags.touched)"
+             class="alert alert-danger">
+            <div *ngIf="articletags.errors.required">
+                articletags is required.
+            </div>
+        </div>
+        <div>
+            <button type="button" (click)="articleAdd()">发布</button>
+        </div>
+        <p>Form value: {{ articleForm.value | json }}</p>
+    </div>
+</form>
+<!--
 <table style="width: 80%;">
     <tr>
         <td>
@@ -6,7 +42,7 @@
     </tr>
     <tr>
         <td>
-            <input style="width: 80%;" type="text" [(ngModel)]="article.articletitle" name="articletitle">
+            <input style="width: 100%;" type="text" [(ngModel)]="article.articletitle" name="articletitle">
         </td>
     </tr>
     <tr>
@@ -18,9 +54,20 @@
         <td><div [froalaEditor]="option" [(froalaModel)]="article.articlecontent"></div></td>
     </tr>
     <tr>
+        <td>
+            标签：
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input style="width: 100%;" type="text" [(ngModel)]="article.articletags" name="articletags">
+        </td>
+    </tr>
+    <tr>
         <td><button type="button" (click)="articleAdd()">发布</button></td>
     </tr>
     <tr>
         <td>{{ article | json }}</td>
     </tr>
 </table>
+-->
